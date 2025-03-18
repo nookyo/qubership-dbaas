@@ -116,7 +116,7 @@ jobs:
       artifact-id: ${{ needs.update-pom-version.outputs.artifact_id }}
     secrets:
       maven-username: ${{ secrets.MAVEN_USER }}
-      maven-token: ${{ secrets.MAVEN_PASSWORD }}
+      maven-token: ${{ secrets.GITHUB_TOKEN }}
       gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
       gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
 
