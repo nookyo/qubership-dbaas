@@ -109,9 +109,10 @@ jobs:
     needs: [update-pom-version]
     uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
     with:
-      maven-command: "--batch-mode package"
+      maven-command: "--batch-mode package -Dgpg.skip=true"
       java-version: ${{ github.event.inputs.java-version }}
       upload-artifact: true
+      server-id: github
       artifact-id: ${{ needs.update-pom-version.outputs.artifact_id }}
     secrets:
       maven-username: ${{ secrets.MAVEN_USER }}
