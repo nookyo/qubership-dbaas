@@ -97,6 +97,7 @@ jobs:
         id: config
         uses: netcracker/qubership-workflow-hub/actions/pom-updater@main
         with:
+          path: //p:project/p:version
           new_value: ${{ github.event.inputs.version }}
 
       - name: Commit Changes
