@@ -53,6 +53,8 @@ on:
 jobs:
   change-version:
       runs-on: ubuntu-latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       steps:
            - name: Input parameters
              run: |
@@ -72,7 +74,8 @@ jobs:
                   git add .
                   git commit -m "Update pom.xml version to ${{ github.event.inputs.version }}"
                   git push  
-            
+             env:     
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # check-tag:
   #   runs-on: ubuntu-latest
   #   steps:
