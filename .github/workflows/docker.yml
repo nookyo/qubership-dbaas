@@ -65,7 +65,7 @@ jobs:
              uses: actions/checkout@v4
 
            - name: Update pom.xml
-             run:  mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false
+             run:  mvn -o versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false
 
            - name: Commit Changes
              run: |
