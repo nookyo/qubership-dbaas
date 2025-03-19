@@ -28,7 +28,7 @@
     <repositories>
         <repository>
             <id>github</id>
-            <url>https://maven.pkg.github.com/netcracker/*</url>
+            <url>https://maven.pkg.github.com/nookyo/*</url>
             <snapshots/>
         </repository>
     </repositories>
