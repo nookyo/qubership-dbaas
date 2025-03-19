@@ -64,18 +64,27 @@ jobs:
            - name: Checkout code
              uses: actions/checkout@v4
 
-           - name: Update pom.xml
-             run:  mvn -o versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false
+            
+            uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
+            with:
+              maven-command: "mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false"
+              java-version: ${{ github.event.inputs.java-version }}
+              upload-artifact: false
+              # artifact-id: ${{ needs.update-pom-version.outputs.artifact_id }}
+              server-id: ${{ github.event.inputs.mode }}   
 
-           - name: Commit Changes
-             run: |
-                  git config --global user.email "qubership-actios[bot]"
-                  git config --global user.name "qubership-actios[bot]@qubership.com"
-                  git add .
-                  git commit -m "Update pom.xml version to ${{ github.event.inputs.version }}"
-                  git push  
-             env:     
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #  - name: Update pom.xml
+          #    run:  mvn -o versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false
+
+          #  - name: Commit Changes
+          #    run: |
+          #         git config --global user.email "qubership-actios[bot]"
+          #         git config --global user.name "qubership-actios[bot]@qubership.com"
+          #         git add .
+          #         git commit -m "Update pom.xml version to ${{ github.event.inputs.version }}"
+          #         git push  
+          #    env:     
+          #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # check-tag:
   #   runs-on: ubuntu-latest
   #   steps:
