@@ -64,11 +64,21 @@ jobs:
            - name: Checkout code
              uses: actions/checkout@v4
 
+           - name: Set up JDK
+             uses: actions/setup-java@v4
+             with:
+               java-version: ${{ inputs.java-version }}
+               distribution: 'temurin'
+               server-username: GITHUB_USER
+               server-password: GITHUB_TOKEN
+     
+
 
            - name: Sign and Deploy jar to Maven Central
              run: "mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false"
              env:
-               MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              GITHUB_USER: ${{ github.actor }}
            
           #  - name: Update pom.xml
           #    run:  mvn -o versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false
