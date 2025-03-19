@@ -67,9 +67,9 @@ jobs:
 
            - name: Commit Changes
              run: |
-                  git config --global user.email "
-                  git config --global user.name "GitHub Actions"
-                  git add pom.xml
+                  git config --global user.email "qubership-actios[bot]"
+                  git config --global user.name "qubership-actios[bot]@qubership.com"
+                  git add .
                   git commit -m "Update pom.xml version to ${{ github.event.inputs.version }}"
                   git push  
             
