@@ -74,24 +74,21 @@ jobs:
      
 
 
-           - name: Sign and Deploy jar to Maven Central
+           - name: Change version
              run: "mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false -DprocessAllModules=true -DallowDowngrade=true -DupdateChildModules=true"
              env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               GITHUB_USER: ${{ github.actor }}
            
-          #  - name: Update pom.xml
-          #    run:  mvn -o versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false
-
-          #  - name: Commit Changes
-          #    run: |
-          #         git config --global user.email "qubership-actios[bot]"
-          #         git config --global user.name "qubership-actios[bot]@qubership.com"
-          #         git add .
-          #         git commit -m "Update pom.xml version to ${{ github.event.inputs.version }}"
-          #         git push  
-          #    env:     
-          #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           - name: Commit Changes
+             run: |
+                  git config --global user.email "qubership-actios[bot]"
+                  git config --global user.name "qubership-actios[bot]@qubership.com"
+                  git add .
+                  git commit -m "Update version to ${{ github.event.inputs.version }}"
+                  git push  
+             env:     
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # check-tag:
   #   runs-on: ubuntu-latest
   #   steps:
