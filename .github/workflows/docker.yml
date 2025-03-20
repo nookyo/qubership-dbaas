@@ -53,8 +53,6 @@ on:
 jobs:
   change-version:
       runs-on: ubuntu-latest
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       steps:
            - name: Input parameters
              run: |
@@ -74,8 +72,10 @@ jobs:
      
 
 
-           - name: Change version
-             run: "mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false -DprocessAllModules=true -DallowDowngrade=true -DupdateChildModules=true"
+           - name: Change version and get Artifact Id
+             run: | 
+                    mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false -DprocessAllModules=true -DallowDowngrade=true -DupdateChildModules=true
+                    echo "ARTIFACT_ID=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
              env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               GITHUB_USER: ${{ github.actor }}
@@ -89,6 +89,7 @@ jobs:
                   git push  
              env:     
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   # check-tag:
   #   runs-on: ubuntu-latest
   #   steps:
