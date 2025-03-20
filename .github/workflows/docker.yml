@@ -75,7 +75,7 @@ jobs:
 
 
            - name: Sign and Deploy jar to Maven Central
-             run: "mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false -DprocessAllModules=true -DallowDowngrade=true"
+             run: "mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false -DprocessAllModules=true -DallowDowngrade=true -DupdateChildModules=true"
              env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               GITHUB_USER: ${{ github.actor }}
