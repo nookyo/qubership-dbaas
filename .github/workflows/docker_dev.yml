@@ -32,22 +32,27 @@ on:
         description: 'Dry run'
   
 jobs:
-  dev-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Maven package
-        uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
-        with:
-          maven-command: "--batch-mode package -Dgpg.skip=true"
-          java-version: ${{ github.event.inputs.java-version }}
-          upload-artifact: true
-          artifact-id: ${{ github.event.inputs.artifact-name }}
-          server-id: ${{ github.event.inputs.mode }}
+  # dev-build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+
+  #     - name : Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Maven package
+  #       uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
+  #       with:
+  #         maven-command: "--batch-mode package -Dgpg.skip=true"
+  #         java-version: ${{ github.event.inputs.java-version }}
+  #         upload-artifact: true
+  #         artifact-id: ${{ github.event.inputs.artifact-name }}
+  #         server-id: ${{ github.event.inputs.mode }}
 
   docker-build-publish:
     runs-on: ubuntu-latest
-    needs: [dev-build]
     steps:
+      - name : Checkout code
+        uses: actions/checkout@v2
 
       - name: Create name
         uses: netcracker/qubership-workflow-hub/actions/metadata-action@main
@@ -58,7 +63,6 @@ jobs:
 
       - name: Debug 
         run: echo "Metadata result ${{ steps.metadata.outputs.result }}"
-
 
         
       # - name: Docker build and publish
