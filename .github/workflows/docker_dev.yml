@@ -58,7 +58,7 @@ jobs:
         uses: netcracker/qubership-workflow-hub/actions/metadata-action@main
         id: metadata
         with:
-          configuration-path: .github/metafata-config.yml
+          configuration-path: .github/metadata-config.yml
           
 
       - name: Debug 
