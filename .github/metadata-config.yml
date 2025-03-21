@@ -3,6 +3,7 @@ branches-template:
   - "feature/*": "{{ref-name}}-{{timestamp}}.{{runNumber}}"
   - "hotfix/*": "{{ref-name}}-{{timestamp}}.{{runNumber}}"
   - "fix/*": "{{ref-name}}-{{timestamp}}.{{runNumber}}"
+  - "fix": "{{ref-name}}-{{timestamp}}.{{runNumber}}"
   - tag: "v{{major}}.{{minor}}.{{patch}}"
 dist-tags:
   - main: "latest"
