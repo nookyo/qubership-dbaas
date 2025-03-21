@@ -1,10 +1,8 @@
- branches-template:
+branches-template:
   - main: "{{ref-name}}-{{timestamp}}.{{runNumber}}"
   - "feature/*": "{{ref-name}}-{{timestamp}}.{{runNumber}}"
-  - "fix/*": "release-{{ref-name}}-{{timestamp}}.{{runNumber}}"
+  - "hotfix/*": "{{ref-name}}-{{timestamp}}.{{runNumber}}"
+  - "fix/*": "{{ref-name}}-{{timestamp}}.{{runNumber}}"
   - tag: "v{{major}}.{{minor}}.{{patch}}"
-dist-tags:
-  main: "latest"
-  "release/*": "next"
-  "feature/*": "beta"
-  tag: "stable"
+dist-tag:
+  - main: "latest"
