@@ -1,0 +1,70 @@
+name: Dev version
+
+on:
+  workflow_dispatch:
+    inputs:
+      artifact-name:
+        description: 'Artifact name'
+        required: true
+        default: 'dbaas'
+      java-version:
+        required: false
+        type: string
+        default: "21"
+        description: 'Java version (e.g., 21)'
+      build-docker:
+        required: false
+        type: boolean
+        default: true
+        description: 'Release docker image if there is Docker file'
+      mode:
+        type: choice
+        default: 'github'
+        description: 'Release mode (github or central)'
+        required: true
+        options:
+          - github
+          - central
+      dry-run:
+        required: false
+        type: boolean
+        default: false
+        description: 'Dry run'
+  
+jobs:
+  dev-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Maven package
+        uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
+        with:
+          maven-command: "--batch-mode package -Dgpg.skip=true"
+          java-version: ${{ github.event.inputs.java-version }}
+          upload-artifact: true
+          artifact-id: ${{ github.event.inputs.artifact-name }}
+          server-id: ${{ github.event.inputs.mode }}
+
+  docker-build-publish:
+    runs-on: ubuntu-latest
+    needs: [dev-build]
+    steps:
+
+      - name: Create name
+        uses: netcracker/qubership-workflow-hub/actions/metadata-action@main
+        id: metadata
+        with:
+          configuration-path: .github/metafata-config.yml
+          
+
+      - name: Debug 
+        run: echo "Metadata result ${{ steps.metadata.outputs.result }}"
+
+
+        
+      # - name: Docker build and publish
+      #   uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
+      #   with:
+      #     ref: ${{ env.ARTIFACT_ID }}
+      #     artifact-id: ${{ env.ARTIFACT_ID }}
+      #     dry-run: ${{ inputs.dry-run }}
+      #     download-artifact: true
