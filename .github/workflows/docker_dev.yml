@@ -62,7 +62,7 @@ jobs:
           
 
       - name: Debug 
-        run: 'echo "Metadata result ${{ github.event.inputs.artifact-name }} : ${{ steps.metadata.outputs.result }}"'
+        run: 'echo "Metadata result ${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }}"'
 
         
       # - name: Docker build and publish
