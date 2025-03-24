@@ -43,7 +43,7 @@ jobs:
     secrets:
       maven-token: ${{ secrets.GITHUB_TOKEN }} 
 
-  perform-dev-version:
+  perform-version:
     runs-on: ubuntu-latest
     needs: dev-build
     outputs:
@@ -62,7 +62,7 @@ jobs:
         run: 'echo Metadata result ${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }} >> $GITHUB_STEP_SUMMARY'
 
 
-  docker-dev-buid:
+  docker-build:
        uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
        needs: perform-dev-version
        with:
