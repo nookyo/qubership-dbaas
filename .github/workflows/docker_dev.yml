@@ -6,7 +6,7 @@ on:
       artifact-name:
         description: 'Artifact name'
         required: true
-        default: 'dbaas'
+        default: 'dbaas-aggregator'
       java-version:
         required: false
         type: string
