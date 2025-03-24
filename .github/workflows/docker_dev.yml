@@ -32,20 +32,20 @@ on:
         description: 'Dry run'
   
 jobs:
-  # dev-build:
-  #   uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
-  #   with:
-  #     maven-command: "--batch-mode package -Dgpg.skip=true"
-  #     java-version: ${{ github.event.inputs.java-version }}
-  #     upload-artifact: true
-  #     artifact-id: ${{ github.event.inputs.artifact-name }}
-  #     server-id: ${{ github.event.inputs.mode }}
-  #   secrets:
-  #     maven-token: ${{ secrets.GITHUB_TOKEN }} 
+  dev-build:
+    uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
+    with:
+      maven-command: "--batch-mode package -Dgpg.skip=true"
+      java-version: ${{ github.event.inputs.java-version }}
+      upload-artifact: true
+      artifact-id: ${{ github.event.inputs.artifact-name }}
+      server-id: ${{ github.event.inputs.mode }}
+    secrets:
+      maven-token: ${{ secrets.GITHUB_TOKEN }} 
 
   perform-version:
     runs-on: ubuntu-latest
-    # needs: dev-build
+    needs: dev-build
     outputs:
       metadata: '${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }}'
     steps:
@@ -60,27 +60,12 @@ jobs:
 
       - name: Echo metadata 
         run: 'echo Metadata result ${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }} >> $GITHUB_STEP_SUMMARY'
-
-
-  check-docker:
-    runs-on: ubuntu-latest
-    needs: perform-version
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: List files
-        run: ls -la 
-
-      - name: List files on repo
-        run: ls -la $GITHUB_WORKSPACE
         
   docker-build:        
        uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
-       needs: check-docker
+       needs: perform-version
        with:
          ref: '${{ needs.perform-dev-version.outputs.metadata }}'
          artifact-id: ${{ github.event.inputs.artifact-name }}
-        #  dry-run: ${{ inputs.dry-run }}
-         dry-run: true
+         dry-run: ${{ inputs.dry-run }}        
          download-artifact: true
