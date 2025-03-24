@@ -40,6 +40,8 @@ jobs:
       upload-artifact: true
       artifact-id: ${{ github.event.inputs.artifact-name }}
       server-id: ${{ github.event.inputs.mode }}
+    secrets:
+      maven-token: ${{ secrets.GITHUB_TOKEN }} 
 
   perform-dev-version:
     runs-on: ubuntu-latest
