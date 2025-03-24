@@ -19,20 +19,20 @@ on:
         description: 'Dry run'
   
 jobs:
-  # dev-build:
-  #   uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
-  #   with:
-  #     maven-command: "--batch-mode package -Dgpg.skip=true"
-  #     java-version: ${{ github.event.inputs.java-version }}
-  #     upload-artifact: true
-  #     artifact-id: ${{ github.event.inputs.artifact-name }}
-  #     server-id: 'github'
-  #   secrets:
-  #     maven-token: ${{ secrets.GITHUB_TOKEN }} 
+  dev-build:
+    uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
+    with:
+      maven-command: "--batch-mode package -Dgpg.skip=true"
+      java-version: ${{ github.event.inputs.java-version }}
+      upload-artifact: true
+      artifact-id: ${{ github.event.inputs.artifact-name }}
+      server-id: 'github'
+    secrets:
+      maven-token: ${{ secrets.GITHUB_TOKEN }} 
 
   perform-version:
     runs-on: ubuntu-latest
-    # needs: dev-build
+    needs: dev-build
     outputs:
       metadata: '${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }}'
     steps:
