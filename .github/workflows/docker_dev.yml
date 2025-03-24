@@ -65,10 +65,10 @@ jobs:
         run: 'echo "Metadata result ${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }}"'
 
         
-      # - name: Docker build and publish
-      #   uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
-      #   with:
-      #     ref: ${{ env.ARTIFACT_ID }}
-      #     artifact-id: ${{ env.ARTIFACT_ID }}
-      #     dry-run: ${{ inputs.dry-run }}
-      #     download-artifact: true
+      - name: Docker build and publish
+        uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
+        with:
+          ref: ${{ github.event.ref }}
+          artifact-id: '"${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }}"'
+          dry-run: ${{ inputs.dry-run }}
+          download-artifact: true
