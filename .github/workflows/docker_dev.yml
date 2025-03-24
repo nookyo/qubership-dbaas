@@ -32,21 +32,21 @@ on:
         description: 'Dry run'
   
 jobs:
-  # dev-build:
-  #   runs-on: ubuntu-latest
-  #   steps:
+  dev-build:
+    runs-on: ubuntu-latest
+    steps:
 
-  #     - name : Checkout code
-  #       uses: actions/checkout@v2
+      - name : Checkout code
+        uses: actions/checkout@v2
 
-  #     - name: Maven package
-  #       uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
-  #       with:
-  #         maven-command: "--batch-mode package -Dgpg.skip=true"
-  #         java-version: ${{ github.event.inputs.java-version }}
-  #         upload-artifact: true
-  #         artifact-id: ${{ github.event.inputs.artifact-name }}
-  #         server-id: ${{ github.event.inputs.mode }}
+      - name: Maven package
+        uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
+        with:
+          maven-command: "--batch-mode package -Dgpg.skip=true"
+          java-version: ${{ github.event.inputs.java-version }}
+          upload-artifact: true
+          artifact-id: ${{ github.event.inputs.artifact-name }}
+          server-id: ${{ github.event.inputs.mode }}
 
   perform-dev-version:
     runs-on: ubuntu-latest
