@@ -12,19 +12,6 @@ on:
         type: string
         default: "21"
         description: 'Java version (e.g., 21)'
-      build-docker:
-        required: false
-        type: boolean
-        default: true
-        description: 'Release docker image if there is Docker file'
-      mode:
-        type: choice
-        default: 'github'
-        description: 'Release mode (github or central)'
-        required: true
-        options:
-          - github
-          - central
       dry-run:
         required: false
         type: boolean
