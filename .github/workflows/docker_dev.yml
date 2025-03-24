@@ -62,19 +62,15 @@ jobs:
         with:
           configuration-path: .github/metadata-config.yml
 
-      - name: Echo metadata result
+      - name: Echo metadata 
         run: 'echo Metadata result ${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }} >> $GITHUB_STEP_SUMMARY'
 
 
   docker-dev-buid:
-    runs-on: ubuntu-latest
-    needs: perform-dev-version
-    steps:
-      - name: debug
-        run: echo "Metadata result ${{ needs.perform-dev-version.outputs.metadata }}"
-      #  uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
-      #  with:
-      #    ref: ${{ github.event.ref }}
-      #    artifact-id: '"${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }}"'
-      #    dry-run: ${{ inputs.dry-run }}
-      #    download-artifact: true
+       uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
+       needs: perform-dev-version
+       with:
+         ref: ${{ github.event.ref }}
+         artifact-id: '${{ needs.perform-dev-version.outputs.metadata }}'
+         dry-run: ${{ inputs.dry-run }}
+         download-artifact: true
