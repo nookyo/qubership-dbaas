@@ -65,7 +65,7 @@ jobs:
        uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
        needs: perform-version
        with:
-         ref: '${{ needs.perform-dev-version.outputs.metadata }}'
+         ref: '${{ needs.perform-version.outputs.metadata }}'
          artifact-id: ${{ github.event.inputs.artifact-name }}
          dry-run: ${{ inputs.dry-run }}        
          download-artifact: true
