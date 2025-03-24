@@ -63,7 +63,7 @@ jobs:
           configuration-path: .github/metadata-config.yml
 
       - name: Echo metadata result
-        run: 'echo "Metadata result ${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }} >> $GITHUB_STEP_SUMMARY'
+        run: 'echo Metadata result ${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }} >> $GITHUB_STEP_SUMMARY'
 
 
   docker-dev-buid:
