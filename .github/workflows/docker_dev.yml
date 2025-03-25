@@ -60,7 +60,7 @@ jobs:
               ls -la dbaas-aggregator/target  
                       
   docker-build:        
-       uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
+       uses: nookyo/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
        needs: perform-version
        with:
          ref: ${{ github.event.ref }}
