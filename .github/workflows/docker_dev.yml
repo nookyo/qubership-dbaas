@@ -46,7 +46,7 @@ jobs:
           configuration-path: .github/metadata-config.yml
 
       - name: Echo metadata 
-        run: 'echo Metadata result: ${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }} >> $GITHUB_STEP_SUMMARY'      
+        run: 'echo Metadata result: ${{ steps.metadata.outputs.result }} >> $GITHUB_STEP_SUMMARY'      
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -65,4 +65,4 @@ jobs:
          artifact-id: ${{ github.event.inputs.artifact-name }}
          dry-run: ${{ inputs.dry-run }}        
          download-artifact: true
-        #  tags-override: '${{ needs.perform-version.outputs.metadata }}'
+         tags-override: '${{ needs.perform-version.outputs.metadata }}'
