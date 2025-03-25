@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create name
-        uses: nookyo/qubership-workflow-hub/actions/metadata-action@main
+        uses: netcracker/qubership-workflow-hub/actions/metadata-action@main
         id: metadata
         with:
           configuration-path: .github/metadata-config.yml
@@ -60,7 +60,7 @@ jobs:
               ls -la dbaas-aggregator/target  
                       
   docker-build:        
-       uses: nookyo/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
+       uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
        needs: perform-version
        with:
          ref: ${{ github.event.ref }}
