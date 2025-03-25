@@ -46,7 +46,8 @@ jobs:
           configuration-path: .github/metadata-config.yml
 
       - name: Echo metadata 
-        run: 'echo Metadata result: ${{ steps.metadata.outputs.result }} >> $GITHUB_STEP_SUMMARY'      
+        run: 'echo Metadata result: ${{ steps.metadata.outputs.result }} >> $GITHUB_STEP_SUMMARY'     
+ 
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
