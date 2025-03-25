@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: dev-build
     outputs:
-      metadata: '${{ github.event.inputs.artifact-name }}:${{ steps.metadata.outputs.result }}'
+       metadata: "${{ steps.metadata.outputs.result }}"
     steps:
       - name : Checkout code
         uses: actions/checkout@v2
