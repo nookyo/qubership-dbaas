@@ -66,4 +66,4 @@ jobs:
          artifact-id: ${{ github.event.inputs.artifact-name }}
          dry-run: ${{ inputs.dry-run }}        
          download-artifact: true
-         tags-override: 'ghcr.io/nookyo/qubership-dbaas:${{ needs.perform-version.outputs.metadata }}'
+         tags-override: ${{ needs.perform-version.outputs.metadata }}
