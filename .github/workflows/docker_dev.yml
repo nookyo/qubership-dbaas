@@ -55,8 +55,8 @@ jobs:
       - name: Debug
         run: |
               ls -la  
-              ls - la dbaas-aggregator
-              ls - la dbaas-aggregator/target                    
+              ls -la dbaas-aggregator
+              ls -la dbaas-aggregator/target                    
   docker-build:        
        uses: nookyo/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
        needs: perform-version
