@@ -56,7 +56,8 @@ jobs:
         run: |
               ls -la  
               ls -la dbaas-aggregator
-              ls -la dbaas-aggregator/target                    
+              ls -la dbaas-aggregator/target  
+                      
   docker-build:        
        uses: nookyo/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
        needs: perform-version
@@ -65,5 +66,4 @@ jobs:
          artifact-id: ${{ github.event.inputs.artifact-name }}
          dry-run: ${{ inputs.dry-run }}        
          download-artifact: true
-         tags-override: "asdad"
         #  tags-override: '${{ needs.perform-version.outputs.metadata }}'
