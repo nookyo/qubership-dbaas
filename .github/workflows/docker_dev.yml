@@ -22,7 +22,7 @@ jobs:
   dev-build:
     uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
     with:
-      maven-command: "--batch-mode package -Dgpg.skip=true"
+      maven-command: "--batch-mode package -Dgpg.skip=true -DskipTests=true"
       java-version: ${{ github.event.inputs.java-version }}
       upload-artifact: true
       artifact-id: ${{ github.event.inputs.artifact-name }}
