@@ -65,4 +65,4 @@ jobs:
          artifact-id: ${{ github.event.inputs.artifact-name }}
          dry-run: ${{ inputs.dry-run }}        
          download-artifact: true
-         tags-override: '${{ needs.perform-version.outputs.metadata }}'
+        #  tags-override: '${{ needs.perform-version.outputs.metadata }}'
