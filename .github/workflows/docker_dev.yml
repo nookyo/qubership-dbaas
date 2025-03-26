@@ -1,5 +1,5 @@
 name: Dev Build
-run-name: "Dev build: ${{ github.event.repository }} #${{ github.run_number }} artifact: ${{ github.event.inputs.artifact-name }}"
+run-name: "Dev build: repo: ${{ github.ref_name }} #${{ github.run_number }} artifact: ${{ github.event.inputs.artifact-name }}"
 on:
   workflow_dispatch:
     inputs:
