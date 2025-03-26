@@ -1,5 +1,5 @@
 name: Dev Build
-run-name: "Dev build: repository: ${{ github.ref_name }} #${{ github.run_number }}"
+run-name: "Dev build repository: ${{ github.ref_name }} #${{ github.run_number }}"
 on:
   workflow_dispatch:
     inputs:
@@ -53,18 +53,6 @@ jobs:
         with:
           name: ${{ inputs.artifact-name }}
 
-      - name: Rename build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NEW_NAME: "New build: repository ${{ github.repository }}, build №${{ github.run_number }}"
-        run: |
-          echo "Updating run name to: $NEW_NAME"
-          curl -X PATCH \
-          -H "Accept: application/vnd.github.v3+json" \
-          -H "Authorization: token ${GITHUB_TOKEN}" \
-          https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID} \
-          -d "{\"name\": \"${NEW_NAME}\"}" 
-                      
   docker-build:        
        uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
        needs: perform-version
