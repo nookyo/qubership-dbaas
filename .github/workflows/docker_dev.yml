@@ -58,11 +58,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NEW_NAME: "New build: repository ${{ github.repository }}, build №${{ github.run_number }}"
         run: |
-            curl -X PATCH \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token ${GITHUB_TOKEN}" \
-            https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }} \
-            -d "{\"name\": \"${NEW_NAME}\"}"     
+          echo "Updating run name to: $NEW_NAME"
+          curl -X PATCH \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${GITHUB_TOKEN}" \
+          https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID} \
+          -d "{\"name\": \"${NEW_NAME}\"}" 
                       
   docker-build:        
        uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
