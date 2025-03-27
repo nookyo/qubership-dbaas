@@ -27,7 +27,7 @@ jobs:
 
       - name: Debug
         run: |
-              echo github repository: ${{ github.repository }}
+              echo github repository: ${{ github.repository.name }}
               echo github ref: ${{ github.ref }}  
 
 
