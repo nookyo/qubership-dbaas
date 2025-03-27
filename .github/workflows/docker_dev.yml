@@ -64,9 +64,8 @@ jobs:
           else
             TAGS="${BASE_TAG}"
           fi
-          echo "tags=${TAGS}" >> $GITHUB_ENV
+          echo "tags=${TAGS}" >> $GITHUB_OUTPUT
           echo "tags: ${TAGS}" >> $GITHUB_STEP_SUMMARY
-
 
   docker-build:        
        uses: nookyo/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
