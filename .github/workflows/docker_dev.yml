@@ -32,7 +32,6 @@ jobs:
       maven-command: "--batch-mode package -Dgpg.skip=true -DskipTests=true"
       java-version: ${{ github.event.inputs.java-version }}
       upload-artifact: true
-      artifact-id: ${{ github.event.inputs.artifact-name }}
       server-id: "github"
     secrets:
       maven-token: ${{ secrets.GITHUB_TOKEN }} 
@@ -58,14 +57,14 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: ${{ inputs.artifact-name }}
+          name: "artifact"
 
   docker-build:        
        uses: nookyo/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
        needs: perform-version
        with:
          ref: ${{ github.event.ref }}
-         artifact-id: ${{ github.event.inputs.artifact-name }}
+         artifact-id: ${{ github.event.repository.name }}
          dry-run: ${{ inputs.dry-run }}        
          download-artifact: true
          tags: '${{ needs.perform-version.outputs.metadata }}, next, corrupt, system'
