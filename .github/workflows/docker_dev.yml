@@ -7,6 +7,11 @@ on:
         description: 'Artifact name'
         required: false
         default: ''
+      tags:
+        required: false
+        type: string
+        default: 'dev'
+        description: 'Tags'          
       java-version:
         required: false
         type: string
@@ -16,12 +21,7 @@ on:
         required: false
         type: boolean
         default: false
-        description: 'Dry run'
-      tags:
-        required: false
-        type: string
-        default: 'dev'
-        description: 'Tags'          
+        description: 'Dry run'        
   
 jobs:
   dev-build:
