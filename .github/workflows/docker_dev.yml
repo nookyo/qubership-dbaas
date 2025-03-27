@@ -6,7 +6,7 @@ on:
       artifact-name:
         description: 'Artifact name'
         required: false
-        default: 'qubership-dbaas'
+        default: ''
       java-version:
         required: false
         type: string
