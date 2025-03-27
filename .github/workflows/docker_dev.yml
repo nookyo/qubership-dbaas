@@ -64,7 +64,7 @@ jobs:
           else
             TAGS="${BASE_TAG}"
           fi
-          echo "Tags= ${TAGS}" >> $GITHUB_ENV
+          echo "tags=${TAGS}" >> $GITHUB_ENV
 
 
   docker-build:        
