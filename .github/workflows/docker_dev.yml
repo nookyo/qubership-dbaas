@@ -65,7 +65,7 @@ jobs:
             TAGS="${BASE_TAG}"
           fi
           echo "tags=${TAGS}" >> $GITHUB_ENV
-          echo "tags=${TAGS}" >> $GITHUB_STEP_SUMMARY
+          echo "tags: ${TAGS}" >> $GITHUB_STEP_SUMMARY
 
 
   docker-build:        
