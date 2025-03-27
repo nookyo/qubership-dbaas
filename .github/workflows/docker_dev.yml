@@ -19,6 +19,13 @@ on:
         description: 'Dry run'
   
 jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug
+        run: |
+          echo "repository: ${{ github.repository }}"
+          echo "repo name: ${{ github.event.repository.name}}"
   dev-build:
     uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
     with:
