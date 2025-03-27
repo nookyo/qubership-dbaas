@@ -10,7 +10,7 @@ on:
       tags:
         required: false
         type: string
-        default: 'dev'
+        default: ''
         description: 'Tags'          
       java-version:
         required: false
