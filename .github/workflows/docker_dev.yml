@@ -19,18 +19,6 @@ on:
         description: 'Dry run'
   
 jobs:
-  # debug:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-
-  #     - name: Debug
-  #       run: |
-  #             echo github repository: ${{ github.repository.name }}
-  #             echo github ref: ${{ github.ref }}  
-  #             echo repo name: ${GITHUB_REPOSITORY#*/}
-
   dev-build:
     uses: netcracker/qubership-workflow-hub/.github/workflows/maven-publish.yml@main
     with:
@@ -70,7 +58,7 @@ jobs:
        needs: perform-version
        with:
          ref: ${{ github.event.ref }}
-         artifact-id: ${{ github.repository.name }}
+         artifact-id: ${{ github.event.inputs.artifact-name }}
          dry-run: ${{ inputs.dry-run }}        
          download-artifact: true
          tags: '${{ needs.perform-version.outputs.metadata }}, next, corrupt, system'
