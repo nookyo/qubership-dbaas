@@ -1,0 +1,14 @@
+name: Package Cleanup Test
+on:
+    workflow_dispatch:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Package Cleanup
+              uses: nookyo/qubership-workflow-hub/actions/package-cleanup@main
+
