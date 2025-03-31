@@ -11,4 +11,14 @@ jobs:
 
             - name: Package Cleanup
               uses: nookyo/qubership-workflow-hub/actions/package-cleanup@main
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GITHUB_REPOSITORY: ${{ github.repository }}
+                GITHUB_REF: ${{ github.ref }}
+                GITHUB_RUN_ID: ${{ github.run_id }}
+                GITHUB_RUN_NUMBER: ${{ github.run_number }}
+                GITHUB_WORKFLOW: ${{ github.workflow }}
+                GITHUB_ACTOR: ${{ github.actor }}
+                GITHUB_EVENT_NAME: ${{ github.event_name }}
+                GITHUB_EVENT_PATH: ${{ github.event_path }}
 
