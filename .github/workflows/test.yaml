@@ -12,15 +12,6 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Verify JSON file
-              uses: netcracker/qubership-workflow-hub/actions/verify-json@main
-              with:
-                json-file: ${{ env.JSON_FILE }}
-                schema-file: ${{ env.CONFIG_SCHEMA }}
-              env:
-                JSON_FILE: "./confit/org-mandatory-topcs/topics.json"
-                CONFIG_SCHEMA: "./confit/org-mandatory-topcs/config-schema.json"
-
             - name: Package Cleanup
               uses: nookyo/qubership-workflow-hub/actions/package-cleanup@main
               env:
