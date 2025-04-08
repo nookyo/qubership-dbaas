@@ -1,0 +1,3 @@
+thresholdDays: 7
+excludedTags: "release*"
+includedTags: "main*, dev*"
