@@ -15,7 +15,7 @@ jobs:
             - name: Package Cleanup
               uses: nookyo/qubership-workflow-hub/actions/package-cleanup@main
               with:
-                threshold-days: 7
+                threshold-days: 73
                 included-tags: "main*"
                 excluded-tags: "dev*"
               env:
