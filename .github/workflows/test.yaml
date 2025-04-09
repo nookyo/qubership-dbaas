@@ -16,8 +16,8 @@ jobs:
               uses: nookyo/qubership-workflow-hub/actions/package-cleanup@main
               with:
                 threshold-days: 7
-                included-tags: ""
-                excluded-tags: "main*"
+                included-tags: "corrupt"
+                excluded-tags: ""
                 debug: true
               env:
                 PACKAGE_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
