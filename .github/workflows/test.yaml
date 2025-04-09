@@ -18,6 +18,7 @@ jobs:
                 threshold-days: 73
                 included-tags: "main*"
                 excluded-tags: "dev*"
+                debug: true
               env:
                 PACKAGE_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
