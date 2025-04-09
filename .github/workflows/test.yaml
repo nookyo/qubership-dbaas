@@ -19,7 +19,7 @@ jobs:
                 included-tags: "dev"
                 excluded-tags: ""
                 debug: true
-                dry-run: true
+                dry-run: false
               env:
                 PACKAGE_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
