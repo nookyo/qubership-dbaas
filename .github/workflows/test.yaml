@@ -17,7 +17,7 @@ jobs:
               with:
                 threshold-days: 7
                 included-tags: "corrupt*"
-                excluded-tags: "main*"
+                excluded-tags: "dev*"
                 debug: true
               env:
                 PACKAGE_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
