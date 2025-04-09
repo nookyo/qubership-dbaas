@@ -16,7 +16,7 @@ jobs:
               uses: nookyo/qubership-workflow-hub/actions/container-package-cleanup@main
               with:
                 threshold-days: 1
-                included-tags: "main*"
+                included-tags: "corrupt"
                 excluded-tags: ""
                 debug: true
                 dry-run: true
