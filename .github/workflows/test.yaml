@@ -17,7 +17,7 @@ jobs:
               with:
                 threshold-days: 7
                 included-tags: ""
-                excluded-tags: "main"
+                excluded-tags: ""
                 debug: true
               env:
                 PACKAGE_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
