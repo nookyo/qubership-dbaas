@@ -19,7 +19,6 @@ jobs:
                 included-tags: "corrupt"
                 excluded-tags: ""
                 debug: true
-                dry-run: true
               env:
                 PACKAGE_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
